@@ -1,8 +1,4 @@
 class V1::UsersController < ApplicationController
-  
-  def show
-    
-  end
 
   def create
     @user = User.create(user_params)
@@ -13,10 +9,6 @@ class V1::UsersController < ApplicationController
     else
       render json: {message: 'Invalid sign up'}, status: :unauthorized
     end
-  end
-
-  def update
-    
   end
 
   private

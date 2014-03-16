@@ -4,8 +4,8 @@ TodoList::Application.routes.draw do
   scope :api do
     namespace :v1 do
       resources :todos, except: [:edit, :new]
-      resource :session, only: [:create, :destroy, :show]
-      resource :user, except: [:edit, :new, :destroy]
+      resource :session, only: [:create, :destroy]
+      resource :user, only: [:create]
     end
   end
 

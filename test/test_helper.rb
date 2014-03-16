@@ -4,6 +4,11 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
+  def create_user
+    @user = User.create({email: 'test@gmail.com', password: 'password', password_confirmation: 'password'})
+    @user.set_api_key
+  end
+
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #

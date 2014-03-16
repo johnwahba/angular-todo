@@ -32,7 +32,7 @@ class V1::TodosController < ApplicationController
 
   def authenticate
     @user = User.find_by(api_key: params[:api_key])
-    head :unauthorized and return unless @user
+    head :unauthorized and return unless params[:api_key] && @user
   end
 
 

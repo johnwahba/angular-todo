@@ -33,7 +33,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
+group :development, :test do
   gem 'meta_request'
   gem 'pry'
 end
