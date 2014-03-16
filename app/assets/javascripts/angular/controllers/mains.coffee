@@ -12,11 +12,11 @@
   $scope.create = (todo) ->
     Todos.save(todo)
     $scope.currentTodo = {}
-    $scope.todos = Todos.query()
 
   $scope.destroy = (todo) ->
     Todos.delete(todo)
-    $scope.todos = Todos.query()
+    Todos.query (data)->
+      $scope.todos = data
 
   $scope.edit = (todo) ->
     $scope.new = false
