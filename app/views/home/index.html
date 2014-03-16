@@ -1,0 +1,71 @@
+<div ng-app='todo'>
+
+  <script type="text/ng-template" id="/login.html">
+    <div ng-controller="LoginController">
+      <div class='error' ng-model='error'>{{error.message}}</div>
+      <form ng-submit='login()'>
+        Login
+        <br>
+        Email:<input ng-model='user.email'>
+        <br>
+        Password:<input type='password' ng-model='user.password'>
+        <br><input type='submit'>
+      </form>
+    </div>
+    <br>
+    <div ng-controller="SignupController">
+      <div class='error' ng-model='error'>{{error.message}}</div>
+      <form ng-submit='signUp()'>
+        Sign Up
+        <br>
+        Email:<input ng-model='user.email'>
+        <br>
+        Password:<input type='password' ng-model='user.password'>
+        <br>
+        Password Confirmation:<input type='password' ng-model='user.password_confirmation'>
+        <br><input type='submit'>
+      </form>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id='/home.html'>
+    <div ng-controller="TodosController">    
+      <div>
+        Todos
+        <a href='javascript:;' ng-click='logout()'>logout</a>
+      </div>
+      <div ng-model='currentTodo'>
+        <form ng-submit="create(currentTodo)">
+          <input ng-model='currentTodo.text' placeholder='text'>
+          <input type='date' ng-model='currentTodo.due_date' placeholder='due date'>
+          <input type='number' ng-model='currentTodo.priority' placeholder='priority'>
+          <input type='submit'>
+        </form>
+      </div>
+      <table>
+        <tr>
+          <td>Completed</td>
+          <td><a href="" ng-click="predicate='text'; reverse =!reverse">Text</a></td> 
+          <td><a href="" ng-click="predicate='due_date'; reverse =!reverse">Due Date</a></td>
+          <td><a href="" ng-click="predicate='priority'; reverse =!reverse">Priority</a></td>
+          <td></td>
+        </tr>
+      <tr ng-repeat='todo in todos | orderBy:predicate:reverse'> 
+        <td><input type='checkbox' ng-model='todo.complete' ng-change='update(todo)'></td>
+        <td ng-if='!todo.editing'>{{todo.text}}</td>
+        <td ng-if='!todo.editing'>{{todo.due_date}}</td>
+        <td ng-if='!todo.editing'>{{todo.priority}}</td>
+        <td ng-if='!todo.editing'><button ng-click='todo.editing=true'>Edit</button><button ng-click='destroy(todo)'>Destroy</button></td>
+          <td ng-if='todo.editing'><input ng-model='todo.text' placeholder='text'></td>
+          <td ng-if='todo.editing'><input type='date' ng-model='todo.due_date' placeholder='due date'></td>
+          <td ng-if='todo.editing'><input type='number' ng-model='todo.priority' placeholder='priority'></td>
+          <td ng-if='todo.editing'><input type='button' value='Save' ng-click='update(todo)'></td>
+      </tr>
+      </table>
+    </div>
+
+  </script>
+
+  <ng-view></ng-view>
+ 
+</div>  
