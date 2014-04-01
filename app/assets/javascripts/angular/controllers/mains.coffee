@@ -8,10 +8,14 @@
   $scope.update = (todo) ->
     Todos.update(todo)
     todo.editing = false
+    Todos.query (data)->
+      $scope.todos = data
   
   $scope.create = (todo) ->
     Todos.save(todo)
     $scope.currentTodo = {}
+    Todos.query (data)->
+      $scope.todos = data
 
   $scope.destroy = (todo) ->
     Todos.delete(todo)
